@@ -1,0 +1,20 @@
+1:
+    LCD Data transmission (no touch input)
+2:
+
+3:
+
+4:
+
+5:
+
+6:
+
+7:
+    Tinyusb
+8:
+
+9:
+    
+10:
+    RESERVED FOR KERNEL???
