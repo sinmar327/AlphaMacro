@@ -1,0 +1,9 @@
+rgb_write_seq:
+    This function should write a sequence of colors while incorperating the distance between the colors.
+    offset loop Example: 
+    data            111 222 333 000 444 555 666 000 000 777 888 999
+
+    pos              1   2   3   4   5   6   7   8   9  10  11  12
+    shift scheme             t   -   t       t     -     t
+    address          3   6   9  12  15  18  21  24  27  30  33  36
+    offset               3   3  3   3   3   3     6     3   3   3
