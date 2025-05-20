@@ -8,20 +8,20 @@ static lv_obj_t* macroScreen;
 
 static macroKey_t* macroKey = NULL;
 
-static char* TAG = "LVGL_SCREEN_LINKER";
+static bool macroScreenExisting = false;
 
-bool checkMatrixInit()
-{
-    return macroKey != NULL;
-}
+static char* TAG = "LVGL_SCREEN_LINKER";
 
 void openMacroScreen(lv_event_t* cb)
 {
     lv_event_code_t code = lv_event_get_code(cb);
     lv_obj_t* obj = lv_event_get_target(cb);
     //printf(lv_buttonmatrix_get_button_text(obj, lv_buttonmatrix_get_selected_button(obj)));
-    if(macroKey == NULL)
+    if(!macroScreenExisting)
+    {
+        macroScreenExisting = true;
         macroScreenInit(lv_buttonmatrix_get_selected_button(obj), macroKey);
+    }
     else
         macroScreenLoad(lv_buttonmatrix_get_selected_button(obj));
 }

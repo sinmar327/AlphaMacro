@@ -365,7 +365,7 @@ void macroScreenInit(uint8_t idx, macroKey_t* macros)
         lv_obj_set_style_bg_color(colorPickerObj[i], rgbColorArray[i], LV_PART_MAIN);
         lv_obj_set_style_bg_opa(colorPickerObj[i], LV_OPA_COVER, LV_PART_MAIN);
         lv_obj_add_event_cb(colorPickerObj[i], colorPickerColorChanged, LV_EVENT_VALUE_CHANGED, NULL);
-        lv_slider_set_value(colorPickerObj[i],255, LV_ANIM_OFF);
+        lv_slider_set_value(colorPickerObj[i], 0, LV_ANIM_OFF);
     }
     lv_obj_add_event_cb(colorSelectButton, colorPickerToggleOpa, LV_EVENT_CLICKED, NULL);
     lv_obj_add_flag(colorPickerGrid, LV_OBJ_FLAG_HIDDEN);
