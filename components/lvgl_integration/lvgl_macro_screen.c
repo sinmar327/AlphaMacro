@@ -172,13 +172,13 @@ static void deinitMacroScreen()
 }
 
 //Init an array of macros used for macro storage (TODO: implement nvs here)
-macroKey_t* initMacroKeyArray(uint8_t size, uint8_t macroCount)
+macroKey_t* initMacroKeyArray(const uint8_t size, const uint8_t macroCount)
 {
     macroKey_t* arr = heap_caps_calloc(size, sizeof(macroKey_t), MALLOC_CAP_SPIRAM);
      //Allocate memory for macroKey
     for (int i = 0; i < size; i++) //Initialize macroKeyArray
     {
-        arr[i].keyColor = lv_color_make((uint8_t)255, (uint8_t)255, (uint8_t)255);
+        arr[i].keyColor = lv_color_make((uint8_t)0, (uint8_t)0, (uint8_t)0);
         arr[i].macro.delayArrayMs = heap_caps_calloc(macroCount, sizeof(uint32_t), MALLOC_CAP_SPIRAM);
         ESP_ERROR_CHECK(!arr[i].macro.delayArrayMs);
         arr[i].macro.macroArray = heap_caps_calloc(macroCount, sizeof(char*), MALLOC_CAP_SPIRAM);
@@ -194,11 +194,11 @@ macroKey_t* initMacroKeyArray(uint8_t size, uint8_t macroCount)
 }
 
 //Init the macro screen when first opening it
-macroKey_t* macroScreenInit(uint8_t idx)
+void macroScreenInit(uint8_t idx, macroKey_t* macros)
 {
     lv_lock();
     idxCurrent = idx;
-    macroKey = initMacroKeyArray(20,10);
+    macroKey = macros;
                     //Init Grid
     macroScreen = lv_obj_create(NULL);
     lv_obj_set_size(macroScreen, 480, 320);
@@ -225,7 +225,7 @@ macroKey_t* macroScreenInit(uint8_t idx)
     
     lv_style_init(&colorSelectStyle);
     lv_style_set_radius(&colorSelectStyle, LV_RADIUS_CIRCLE);
-    lv_style_set_bg_color(&colorSelectStyle, lv_color_make(255, 255, 255));
+    lv_style_set_bg_color(&colorSelectStyle, lv_color_make(0, 0, 0));
     lv_obj_add_style(colorSelectButton, &colorSelectStyle, LV_PART_MAIN);
     lv_obj_set_grid_cell(colorSelectButton, LV_GRID_ALIGN_CENTER, 2, 1, LV_GRID_ALIGN_CENTER, 0, 1);
     lv_obj_set_size(colorSelectButton, 30, 30);
@@ -353,7 +353,7 @@ macroKey_t* macroScreenInit(uint8_t idx)
 
     colorPickerObj = heap_caps_calloc(4, sizeof(lv_obj_t*), MALLOC_CAP_DEFAULT);
     colorPickerObj[3] = lv_label_create(colorPickerGrid);
-    lv_label_set_text(colorPickerObj[3], "Color: 0xFFFFFF");
+    lv_label_set_text(colorPickerObj[3], "Color: 0x000000");
     lv_obj_set_grid_cell(colorPickerObj[3], LV_GRID_ALIGN_CENTER, 1, 1, LV_GRID_ALIGN_STRETCH, 3, 1);
     lv_color_t rgbColorArray[] = {lv_color_hex(0xFF0000), lv_color_hex(0x00FF00), lv_color_hex(0x0000FF)};
     for(int i = 0; i<3; i++)
@@ -372,7 +372,6 @@ macroKey_t* macroScreenInit(uint8_t idx)
 
     registerMacroScreen(macroScreen);
     lv_unlock();
-    return macroKey;
 }
 
 //Sets the screen content before loading (TODO: implement nvs here)

@@ -5,5 +5,6 @@
 
 
 // Deklaration der Funktion
-macroKey_t* macroScreenInit(uint8_t idx);
+void macroScreenInit(uint8_t idx, macroKey_t* macros);
 void macroScreenLoad(uint8_t idx);
+macroKey_t* initMacroKeyArray(const uint8_t size, const uint8_t macroCount);

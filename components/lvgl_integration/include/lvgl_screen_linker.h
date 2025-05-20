@@ -7,7 +7,7 @@
 
 void openMacroScreen(lv_event_t* cb);
 void toMainScreen();
-void registerMainScreen(lv_obj_t* screen);
+void registerMainScreen(lv_obj_t* screen, macroKey_t* macros);
 void registerMacroScreen(lv_obj_t* screen);
 void loadMacroScreen();
 bool checkMatrixInit();

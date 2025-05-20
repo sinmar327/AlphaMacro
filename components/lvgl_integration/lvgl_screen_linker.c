@@ -21,7 +21,7 @@ void openMacroScreen(lv_event_t* cb)
     lv_obj_t* obj = lv_event_get_target(cb);
     //printf(lv_buttonmatrix_get_button_text(obj, lv_buttonmatrix_get_selected_button(obj)));
     if(macroKey == NULL)
-        macroKey = macroScreenInit(lv_buttonmatrix_get_selected_button(obj));
+        macroScreenInit(lv_buttonmatrix_get_selected_button(obj), macroKey);
     else
         macroScreenLoad(lv_buttonmatrix_get_selected_button(obj));
 }
@@ -35,9 +35,10 @@ void toMainScreen()
 
 //Screen Inits
 
-void registerMainScreen(lv_obj_t* screen)
+void registerMainScreen(lv_obj_t* screen, macroKey_t* macros)
 {
     mainScreen = screen;
+    macroKey = macros;
 }
 
 void registerMacroScreen(lv_obj_t* screen)
