@@ -49,7 +49,7 @@ void draw_btnmatrix_cb(lv_event_t * e)
 lv_obj_t* lvglStartup(lv_disp_t* disp)
 {
     macroMatrix = initMacroKeyArray(20,10);
-    
+
     //esp_timer_handle_t wdt_task;
     //const esp_timer_create_args_t wdt_task_create_args = {
     //    .name = "lv_tick_inc_task",
@@ -109,7 +109,7 @@ lv_obj_t* lvglStartup(lv_disp_t* disp)
     return mainScreen;
 }
 
-void loadMainScreen()
+void loadMainScreen(macroKey_t* macros)
 {
     ESP_LOGI(TAG, "Returning to main screen");
     lv_screen_load(screen);
